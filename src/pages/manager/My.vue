@@ -1,39 +1,47 @@
 <template>
   <div id="my">
     <van-nav-bar fixed :title="'个人中心'" />
-    
+    <!-- {{userinfo}} -->
       <div class="content">
-          <!--  -->
           <div class="photo">
             <div class="photo_wrapper">
               <!-- <img src="../../assets/images/home_23.png" alt=""> -->
             </div>
-            <div style="text-align:center;line-height:3em">lili</div>
+            <div style="text-align:center;line-height:3em">{{userinfo.visitorName}}</div>
             <!-- <div style="text-align:center;line-height:3em">{{userinfo.name}}</div> -->
           </div>
           <div class="line">
-            我的预约
+            预约人:{{userinfo.userName}}
           </div>
           <div class="line">
-            我的权限
+            预约人手机号：{{userinfo.userPhone}}
           </div>
-          <div class="line" @click="logoutHandler">
+          <div class="line" @click="goBack">
             退出
           </div>
       </div>
   </div>
 </template>
 <script>
-import {mapState} from 'vuex';
+import {mapState,mapActions} from 'vuex'
 export default {
-  // computed:{
-  //   ...mapState("user",["userinfo"])
-  // },
-  // methods:{
-  //   logoutHandler(){
-  //     this.$router.push("/login")
-  //   }
-  // }
+  data(){
+    return {
+      
+    }
+  },
+  computed:{
+    // ...mapState('login',['info']),
+    ...mapState('my',['userinfo'])
+  },
+  created(){
+  },
+  methods:{
+    ...mapActions('my',['waiterLogin',]),
+    goBack(){
+      this.$router.push({path:'/'})
+    }
+  }
 }
 </script>
 <style scoped>

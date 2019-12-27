@@ -1,21 +1,7 @@
-
-<template>
-  <div id="app">
-    <div class="content">
-
-         <router-view/>         
- 
-
-    </div>
-
-
-
-     <van-tabbar v-model="active" route>
-       <van-tabbar-item replace to="/" name="home" icon="star-o">首页</van-tabbar-item>
-       <van-tabbar-item replace to="/my" name="my" icon="user-o">我的</van-tabbar-item>
-      </van-tabbar>
-  </div>
+<template >
+  <router-view></router-view>
 </template>
+
 <script>
 export default {
   data(){
@@ -23,11 +9,19 @@ export default {
       active:""
    
     }
-  }
+    
+  },
+  created(){
+    
+  },
+  
 }
 </script>
 
-<style scoped>
-
+<style>
+  #app,html{
+    height: 100%;
+    background-image: url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2532201067,2485320268&fm=26&gp=0.jpg")
+  }
 
 </style>

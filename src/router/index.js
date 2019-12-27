@@ -3,20 +3,29 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import Home from '../pages/manager/Home.vue'
 import My from '../pages/manager/My.vue'
+import Manager from '../pages/manager/Layout.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'login',
+    component: () => import( '../pages/Login.vue')
   },
   {
-    path: '/my',
-    name: 'my',
-    component: My
-  },
+    path: '/manager',
+    name: 'manager',
+    component: Manager,
+    children:[{
+      path: 'home',
+      component: () => import( '../pages/manager/Home.vue')
+    },
+    {
+      path: 'my',
+      component: () => import( '../pages/manager/My.vue')
+    }]
+  }
 
   
 ]
@@ -27,11 +36,4 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   if(to.path === '/login' || store.state.user.userinfo){
-//     next()
-//   } else {
-//     next('/login')
-//   }
-// })
 export default router
